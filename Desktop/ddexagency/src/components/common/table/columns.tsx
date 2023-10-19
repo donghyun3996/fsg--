@@ -1,33 +1,26 @@
-import path from 'path'
-
-const onClick = (cell: any) => {
-  const openWin = window.open(
-    '/Detail',
-    'pop01',
-    'width=700, height=700,fullscreen=no'
-  )
-}
+import { Link, useNavigate } from 'react-router-dom'
+import * as S from './style'
 
 export const COLUMNS = [
   {
     Header: '영수증번호',
-    accessor: 'id',
+    accessor: 'item',
   },
   {
     Header: '배송상태',
-    accessor: 'delivery_status',
+    accessor: 'action',
   },
   {
     Header: '드라이버명',
-    accessor: 'driver_name',
+    accessor: 'name',
   },
   {
     Header: '매장명',
-    accessor: 'store_name',
+    accessor: 'storeName',
   },
   {
     Header: '출발지',
-    accessor: 'start',
+    accessor: 'depart',
   },
   {
     Header: '도착지',
@@ -37,13 +30,52 @@ export const COLUMNS = [
     Header: '날짜',
     accessor: 'date',
   },
+
+  {
+    Header: '출발시간',
+    accessor: 'depart_time',
+  },
+
+  {
+    Header: '도착시간',
+    accessor: 'arrival_time',
+  },
+
+  {
+    Header: '요금',
+    accessor: 'charge',
+  },
+
+  {
+    Header: '고객명',
+    accessor: 'customer',
+  },
+
+  {
+    Header: '상자수',
+    accessor: 'box',
+  },
+
+  {
+    Header: '팩수',
+    accessor: 'pack',
+  },
+
+  {
+    Header: '기타수',
+    accessor: 'etc',
+  },
   {
     Header: '상새정보',
     accessor: 'information',
     Cell: function (props: any) {
       const rowData = props.row
-
-      return <button onClick={() => onClick(rowData)}>상세정보</button>
+      console.log(rowData)
+      return (
+        <Link to={'/Detail'} state={rowData}>
+          <S.infoBtn>상세정보</S.infoBtn>
+        </Link>
+      )
     },
   },
 ]

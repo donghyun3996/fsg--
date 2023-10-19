@@ -1,26 +1,29 @@
 .table {
-    margin: 20px 0;
+  margin: 20px;
 }
 table {
-    font-family: Arial, Helvetica, sans-serif;
-    border-collapse: collapse;
-    width: 100%;
-    font-size: 12px;
+  font-family: Arial, Helvetica, sans-serif;
+  border-collapse: collapse;
+
+  width: 100%;
+  font-size: 12px;
 }
-table td, table th {
-    border: 1px solid black;
-    padding: 8px;
+table td,
+table th {
+  border: 1px solid #e5e5e5;
+  padding: 8px;
+  font-size: 14px;
 }
-table tr:nth-child(even){
-    background-color: white;
+table tr:nth-child(even) {
+  background-color: white;
 }
 table tr:hover {
-    background-color: white;
+  background-color: white;
 }
 table th {
-    padding-top: 12px;
-    padding-bottom: 12px;
-    text-align: left;
-    background-color: white;
-    color: black;
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: white;
+  color: black;
 }

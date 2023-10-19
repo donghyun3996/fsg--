@@ -1,27 +1,46 @@
-import React, { useMemo } from 'react'
+import React, { useMemo, useState, useEffect } from 'react'
 import { DriversCOLUMNS } from './driversColumns'
 import { DworkloadCOLUMNS } from './dworkloadcolumns'
 import { COLUMNS } from './columns'
 import { usePagination, useTable } from 'react-table'
 import './table.css'
+import { AgencyDrivers } from '../../../api/agencyDrivers'
+import { AgencyDeli } from '../../../api/agencyDeli'
+import { AgencyTotal } from '../../../api/agencyTotal'
 
 export const PaginationTable = (pagename: any) => {
   const pages = pagename.pagename
-  let dd = COLUMNS
+
+  let dd = DriversCOLUMNS
   switch (pages) {
     case 'main':
       dd = COLUMNS
+
       break
     case 'drivers':
       dd = DriversCOLUMNS
+
       break
     case 'dworkload':
       dd = DworkloadCOLUMNS
   }
-  const MOCK_DATA = require('./MOCK_DATA.json')
+
+  const tableData = window.localStorage.getItem(pagename.pagename)
+  const nullData: any = [{ '': '' }]
+  const [td, setTD] = useState([])
+
+  useEffect(() => {
+    if (tableData !== null) {
+      setTD(JSON.parse(tableData))
+    } else {
+      setTD(nullData)
+    }
+  }, [])
+
+  console.log(td)
   let columns = useMemo(() => dd, [])
-  const data = useMemo(() => MOCK_DATA, [])
-  console.log(pages)
+  const data = td
+
   const {
     getTableProps,
     getTableBodyProps,
@@ -60,7 +79,6 @@ export const PaginationTable = (pagename: any) => {
             </tr>
           ))}
         </thead>
-
         <tbody {...getTableBodyProps()}>
           {page.map((row: any) => {
             prepareRow(row)

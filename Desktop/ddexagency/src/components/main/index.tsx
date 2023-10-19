@@ -1,39 +1,76 @@
-import Calendar from '../common/calendar/calendar'
+import { Calendar, ECalendar } from '../common/calendar/calendar'
+import DatePicker from 'react-datepicker'
 import Header from '../common/header'
 import Menu from '../common/menu'
-import Table, { PaginationTable } from '../common/table/PaginationTable'
+import { useState } from 'react'
+import { PaginationTable } from '../common/table/PaginationTable'
 import * as S from './style'
+import { Store } from '../../api/store'
+import { AgencyDeli } from '../../api/agencyDeli'
+import 'react-datepicker/dist/react-datepicker.css'
+
+import { useEffect } from 'react'
+import './dateStyle.css'
 function Main() {
   const main = 'main'
+  const [SelectedSDate, setSelectedSDate] = useState<Date | null>(new Date())
+  const [SelectedEDate, setSelectedEDate] = useState<Date | null>(new Date())
+  useEffect(() => {
+    AgencyDeli(SelectedSDate, SelectedEDate)
+  }, [])
+
+  const ss = () => {
+    AgencyDeli(SelectedSDate, SelectedEDate)
+  }
+
+  console.log(SelectedSDate)
+  console.log(SelectedEDate)
+  const stores = Store()
+  const storeName =
+    stores && stores.map((store: any) => <option>{store.label}</option>)
 
   return (
     <>
-      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+      <S.MainPageLayout>
+        <Header />
+        <Menu />
 
-      <Header />
-      <Menu />
-      <S.MainContentWrapper>
-        <h1>업무내역</h1>
-        <S.InputWrapper>
-          <h3>매장명</h3>
-          <select>
-            <option>adf</option>
-            <option>adf</option>
-            <option>adf</option>
-          </select>
-        </S.InputWrapper>
-        <S.InputWrapper>
-          <h3>시작일</h3>
-          <Calendar />
-        </S.InputWrapper>
-        <S.InputWrapper>
-          <h3>종료일</h3>
-          <Calendar />
-        </S.InputWrapper>
+        <S.MainContentWrapper>
+          <S.agencyH1>업무 내역</S.agencyH1>
+          <S.InputWrapper>
+            <h3>매장명</h3>
+            <S.storeSelect>{storeName}</S.storeSelect>
+          </S.InputWrapper>
+          <S.InputWrapper>
+            <h3>시작일</h3>
+            <DatePicker
+              dateFormat="yyyy-MM-dd" // 날짜 형태
+              shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
+              selected={SelectedSDate}
+              onChange={(date) => setSelectedSDate(date)}
+              className="datePicker"
+              onCalendarClose={ss}
+            />
+          </S.InputWrapper>
+          <S.InputWrapper>
+            <h3>종료일</h3>
+            <DatePicker
+              dateFormat="yyyy-MM-dd" // 날짜 형태
+              shouldCloseOnSelect // 날짜를 선택하면 datepicker가 자동으로 닫힘
+              selected={SelectedEDate}
+              onChange={(date) => setSelectedEDate(date)}
+              className="datePicker"
+              onCalendarClose={ss}
+            />
+          </S.InputWrapper>
+          <S.InputWrapper>
+            <h3>agency</h3>
+            <S.agenchInput readOnly placeholder="로지웨이주식회사" />
+          </S.InputWrapper>
 
-        <PaginationTable pagename={main} />
-      </S.MainContentWrapper>
+          <PaginationTable pagename={main} />
+        </S.MainContentWrapper>
+      </S.MainPageLayout>
     </>
   )
 }

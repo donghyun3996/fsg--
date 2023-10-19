@@ -1,26 +1,26 @@
 export const DriversCOLUMNS = [
   {
     Header: '이름',
-    accessor: 'driver_name',
+    accessor: 'name',
   },
   {
-    Header: '전화번호',
-    accessor: 'phone_num',
-  },
-  {
-    Header: '매장번호',
-    accessor: 'store_num',
-  },
-  {
-    Header: '생년월일',
-    accessor: 'birthdat',
+    Header: '상태',
+    accessor: 'active',
   },
   {
     Header: '성별',
     accessor: 'gender',
   },
   {
+    Header: '생년월일',
+    accessor: 'birth',
+  },
+  {
+    Header: '전화번호',
+    accessor: 'phone',
+  },
+  {
     Header: '이메일',
-    accessor: 'mail',
+    accessor: 'email',
   },
 ]

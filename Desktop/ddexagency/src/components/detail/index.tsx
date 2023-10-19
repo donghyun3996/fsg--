@@ -1,6 +1,7 @@
-function Detail() {
-  const data = localStorage.getItem('data')
+import React, { useEffect } from 'react'
 
+function Detail(data: any) {
+  console.log(data)
   return <>detail</>
 }
 

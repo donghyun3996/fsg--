@@ -1,41 +1,30 @@
-import Calendar from '../common/calendar/calendar'
+import { AgencyDrivers } from '../../api/agencyDrivers'
+import { useState } from 'react'
 import Header from '../common/header'
 import Menu from '../common/menu'
 import PaginationTable from '../common/table/PaginationTable'
 import * as S from './style'
 
-function Drivers() {
+export function Drivers() {
   const drivers = 'drivers'
+  AgencyDrivers()
   return (
     <>
-      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-      <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-
-      <Header />
-      <Menu />
-      <S.MainContentWrapper>
-        <h1>드라이버 조회</h1>
-        <S.InputWrapper>
-          <h3>매장명</h3>
-          <select>
-            <option>adf</option>
-            <option>adf</option>
-            <option>adf</option>
-          </select>
-        </S.InputWrapper>
-        <S.InputWrapper>
-          <h3>시작일</h3>
-          <Calendar />
-        </S.InputWrapper>
-        <S.InputWrapper>
-          <h3>종료일</h3>
-          <Calendar />
-        </S.InputWrapper>
-
-        <PaginationTable pagename={drivers} />
-      </S.MainContentWrapper>
+      <S.MainPageLayout>
+        <Header />
+        <Menu />
+        <S.MainContentWrapper>
+          <S.agencyH1>드라이버 조회</S.agencyH1>
+          <S.InputWrapper>
+            <h3>agency</h3>
+            <S.agenchInput
+              readOnly
+              placeholder="로지웨이주식회사"
+            ></S.agenchInput>
+          </S.InputWrapper>
+          <PaginationTable pagename={drivers} sd={''} />
+        </S.MainContentWrapper>
+      </S.MainPageLayout>
     </>
   )
 }
-
-export default Drivers
