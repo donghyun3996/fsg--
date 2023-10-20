@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { useEffect, useState } from 'react'
 export const AgencyDeli = (s: any, e: any) => {
   const token = window.localStorage.getItem('token')
 
@@ -12,7 +11,7 @@ export const AgencyDeli = (s: any, e: any) => {
       token: `${token}`,
     },
     data: {
-      startDay: '2023-10-01',
+      startDay: s,
       endDay: e,
       storeName: -1,
     },

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Calendar, ECalendar } from '../common/calendar/calendar'
+
 import Header from '../common/header'
 import Menu from '../common/menu'
 import PaginationTable from '../common/table/PaginationTable'
@@ -15,17 +15,21 @@ function DWorkload() {
   const [SelectedSDate, setSelectedSDate] = useState<Date | null>(new Date())
   const [SelectedEDate, setSelectedEDate] = useState<Date | null>(new Date())
   useEffect(() => {
-    AgencyDeli(SelectedSDate, SelectedEDate)
+    AgencyTotal(SelectedSDate, SelectedEDate)
   }, [])
 
   const ss = () => {
-    AgencyDeli(SelectedSDate, SelectedEDate)
+    AgencyTotal(SelectedSDate, SelectedEDate)
   }
   const dworkload = 'dworkload'
   const stores = Store()
   const storeName =
     stores && stores.map((store: any) => <option>{store.label}</option>)
-  AgencyTotal()
+
+  const Reload = () => {
+    window.location.reload()
+  }
+
   return (
     <>
       <S.MainPageLayout>
@@ -66,7 +70,11 @@ function DWorkload() {
               placeholder="로지웨이주식회사"
             ></S.agenchInput>
           </S.InputWrapper>
-          <PaginationTable pagename={dworkload} sd={''} ed={''} />
+          <S.InputWrapper>
+            <S.checkButton onClick={Reload}>조회하기</S.checkButton>
+          </S.InputWrapper>
+
+          <PaginationTable pagename={dworkload} />
         </S.MainContentWrapper>
       </S.MainPageLayout>
     </>

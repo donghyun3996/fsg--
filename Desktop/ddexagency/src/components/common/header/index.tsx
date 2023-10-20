@@ -12,7 +12,7 @@ function Header() {
     window.localStorage.removeItem('token')
     window.localStorage.removeItem('drivers')
     window.localStorage.removeItem('main')
-    window.localStorage.removeItem('deli')
+    window.localStorage.removeItem('dworkload')
     return navigate('/')
   }
 

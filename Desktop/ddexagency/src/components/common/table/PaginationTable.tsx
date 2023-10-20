@@ -4,14 +4,11 @@ import { DworkloadCOLUMNS } from './dworkloadcolumns'
 import { COLUMNS } from './columns'
 import { usePagination, useTable } from 'react-table'
 import './table.css'
-import { AgencyDrivers } from '../../../api/agencyDrivers'
-import { AgencyDeli } from '../../../api/agencyDeli'
-import { AgencyTotal } from '../../../api/agencyTotal'
 
 export const PaginationTable = (pagename: any) => {
   const pages = pagename.pagename
 
-  let dd = DriversCOLUMNS
+  let dd = COLUMNS
   switch (pages) {
     case 'main':
       dd = COLUMNS
@@ -23,6 +20,7 @@ export const PaginationTable = (pagename: any) => {
       break
     case 'dworkload':
       dd = DworkloadCOLUMNS
+      break
   }
 
   const tableData = window.localStorage.getItem(pagename.pagename)
@@ -36,7 +34,6 @@ export const PaginationTable = (pagename: any) => {
       setTD(nullData)
     }
   }, [])
-
   console.log(td)
   let columns = useMemo(() => dd, [])
   const data = td

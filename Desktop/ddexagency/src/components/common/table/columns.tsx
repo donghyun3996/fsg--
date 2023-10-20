@@ -1,5 +1,16 @@
-import { Link, useNavigate } from 'react-router-dom'
 import * as S from './style'
+
+const onClick = (cell: any) => {
+  const openWin = window.open(
+    '/Detail',
+    'pop01',
+    'width=700, height=700,fullscreen=no'
+  )
+
+  localStorage.setItem('cellItem', JSON.stringify(cell.item))
+  localStorage.setItem('cellCustomer', JSON.stringify(cell.customer))
+  localStorage.setItem('cellDate', JSON.stringify(cell.date))
+}
 
 export const COLUMNS = [
   {
@@ -69,13 +80,9 @@ export const COLUMNS = [
     Header: '상새정보',
     accessor: 'information',
     Cell: function (props: any) {
-      const rowData = props.row
-      console.log(rowData)
-      return (
-        <Link to={'/Detail'} state={rowData}>
-          <S.infoBtn>상세정보</S.infoBtn>
-        </Link>
-      )
+      const rowData = props.row.original
+
+      return <S.infoBtn onClick={() => onClick(rowData)}>상세정보</S.infoBtn>
     },
   },
 ]

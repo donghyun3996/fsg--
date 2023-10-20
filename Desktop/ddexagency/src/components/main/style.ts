@@ -40,3 +40,20 @@ export const agenchInput = styled.input`
   border-radius: 8px;
   border: 1px solid #0075ff;
 `
+
+export const checkButton = styled.button`
+  width: 4vw;
+  height: 2.5vh;
+  border-radius: 8px;
+  border: 1px solid #0075ff;
+  background: #0075ff;
+  color: white;
+
+  &:hover {
+    border: 1px solid #0075ff;
+    border-radius: 8px;
+    color: #0075ff;
+    background: none;
+    box-sizing: border-box;
+  }
+`
